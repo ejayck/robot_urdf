@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
     <robot name="robot">
-   
+   <!-- BODY DRIVE WHEEL URDF -->
    <link name="base">
        <visual>
    	        <origin rpy="0 0 0" xyz="0 0. 0"/>
@@ -12,21 +12,27 @@
           <color rgba="0.6 0.6 0.6 1"/>
         </material>
        </visual>
-   	
+       <collision>
+        <origin rpy="0 0 0" xyz="0 0. 0"/>
+        <geometry>
+            <box size="0.7 0.7 1.2"/>
+       </geometry>
+       </collision>
+
     </link>
-   
+    <!-- RIGHT DRIVE WHEEL URDF -->
    <joint name="body_right_wheel" type="revolute">
    	<axis xyz="0 0 1"/>
     	<parent link="base"/>
       <child link="right_wheel"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="1.5707 0 0" xyz="0 -0.4 -0.600"/>
       <limit effort="30" velocity="1.0" lower="-2.2" upper="0.7" />
       
    </joint>
    
    <link name="right_wheel">
        <visual>
-   	<origin rpy="1.5707 0 0" xyz="0 -0.4 -0.600"/>
+   	<origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
           <cylinder length="0.1" radius="0.1"/>
         </geometry>
@@ -34,20 +40,26 @@
           <color rgba="0.8 0.8 0.8 1"/>
         </material>
       </visual>
-
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <cylinder length="0.1" radius="0.1"/>
+        </geometry>
+      </collision>
   </link>
-   
+
+   <!-- LEFT DRIVE WHEEL URDF -->
     <joint name="body_left_wheel" type="revolute">
     	<axis xyz="0 0 1"/>
      	<parent link="base"/>
       <child link="left_wheel"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="-1.5707 0 0" xyz="0 0.40 -0.600"/>
       <limit effort="30" velocity="1.0" lower="-2.2" upper="0.7" />
        </joint>
    
    <link name="left_wheel">
        <visual>
-   	<origin rpy="-1.5707 0 0" xyz="0 0.40 -0.600"/>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
          <geometry>
            <cylinder length="0.1" radius="0.1"/>
         </geometry>
@@ -55,11 +67,123 @@
           <color rgba="0.8 0.8 0.8 1"/>
         </material>
       </visual>
-  
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+         <geometry>
+           <cylinder length="0.1" radius="0.1"/>
+        </geometry>
+      </collision>
     </link>
+
+    <!-- RIGHT PASSIVE WHEELS URDF -->
+    <joint name="body_top_right_wheel" type="revolute">
+   	<axis xyz="0 0 1"/>
+    	<parent link="base"/>
+      <child link="top_right_wheel_passive"/>
+      <origin rpy="1.5707 0 0" xyz="0.35 -0.4 -0.600"/>
+      <limit effort="30" velocity="1.0" lower="-2.2" upper="0.7" />
+      
+   </joint>
    
+   <link name="top_right_wheel_passive">
+       <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <cylinder length="0.1" radius="0.1"/>
+        </geometry>
+        <material name="Light_grey">
+          <color rgba="0.8 0.8 0.8 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <cylinder length="0.1" radius="0.1"/>
+        </geometry>
+      </collision>
+  </link>
+
+  <joint name="body_bottom_right_wheel" type="revolute">
+    <axis xyz="0 0 1"/>
+     <parent link="base"/>
+     <child link="bottom_right_wheel_passive"/>
+     <origin rpy="1.5707 0 0" xyz="-0.35 -0.4 -0.600"/>
+     <limit effort="30" velocity="1.0" lower="-2.2" upper="0.7" />
+     
+  </joint>
+  
+  <link name="bottom_right_wheel_passive">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+       <geometry>
+         <cylinder length="0.1" radius="0.1"/>
+       </geometry>
+       <material name="Light_grey">
+         <color rgba="0.8 0.8 0.8 1"/>
+       </material>
+     </visual>
+     <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+       <geometry>
+         <cylinder length="0.1" radius="0.1"/>
+       </geometry>
+     </collision>
+ </link>
+
+    <!-- LEFT PASSIVE WHEELS URDF -->
+    <joint name="body_top_left_wheel" type="revolute">
+      <axis xyz="0 0 1"/>
+       <parent link="base"/>
+       <child link="top_left_wheel_passive"/>
+       <origin rpy="-1.5707 0 0" xyz="0.35 0.4 -0.600"/>
+       <limit effort="30" velocity="1.0" lower="-2.2" upper="0.7" />
+       
+    </joint>
+    
+    <link name="top_left_wheel_passive">
+        <visual>
+          <origin rpy="0 0 0" xyz="0 0 0"/>
+         <geometry>
+           <cylinder length="0.1" radius="0.1"/>
+         </geometry>
+         <material name="Light_grey">
+           <color rgba="0.8 0.8 0.8 1"/>
+         </material>
+       </visual>
+       <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+         <geometry>
+           <cylinder length="0.1" radius="0.1"/>
+         </geometry>
+       </collision>
+   </link>
+ 
+   <joint name="body_bottom_left_wheel" type="revolute">
+     <axis xyz="0 0 1"/>
+      <parent link="base"/>
+      <child link="bottom_left_wheel_passive"/>
+      <origin rpy="-1.5707 0 0" xyz="-0.35 0.4 -0.600"/>
+      <limit effort="30" velocity="1.0" lower="-2.2" upper="0.7" />
+      
+   </joint>
    
-   
+   <link name="bottom_left_wheel_passive">
+       <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <cylinder length="0.1" radius="0.1"/>
+        </geometry>
+        <material name="Light_grey">
+          <color rgba="0.8 0.8 0.8 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <cylinder length="0.1" radius="0.1"/>
+        </geometry> 
+      </collision>
+  </link>
    
    
    
