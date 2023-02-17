@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+<!-- creating a parameter with the robot urft file-->
+<param name="robot_description" command="$(find xacro)/xacro '$(find robot_urdf)/urdf/robot.urdf'"/>
+
+
+<!-- to get rid off the joint link errors but letting this package interface them (not needed if no joints)-->
+<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node>
+   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+   
+<!-- launching rvis (the args -d is to loadrvis with the thr robot configered to save time) -->
+<node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot_urdf)/rvis_config/basic_robot.rviz"/>
+
+
+
+
+</launch>

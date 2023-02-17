@@ -1,62 +1,62 @@
 <?xml version="1.0"?>
 
-   2 <robot name="robot">
+    <robot name="robot">
    
-   3   <link name="body">
-   4     <visual>
-   	<origin rpy="0 0 0" xyz="0 0. 0"/>
-   5       <geometry>
-   6         <box size="0.7 0.7 1.2"/>
-   7       </geometry>
-   8     </visual>
-   	<collision>
-   	<geometry>
-   6         <box size="0.7 0.7 1.2"/>
-   7       </geometry>
-   	</collision>
-   9   </link>
+   <link name="base">
+       <visual>
+   	        <origin rpy="0 0 0" xyz="0 0. 0"/>
+          <geometry>
+              <box size="0.7 0.7 1.2"/>
+         </geometry>
+         <material name="grey">
+          <color rgba="0.6 0.6 0.6 1"/>
+        </material>
+       </visual>
+   	
+    </link>
    
    <joint name="body_right_wheel" type="revolute">
    	<axis xyz="0 0 1"/>
     	<parent link="base"/>
-  65     <child link="right_wheel"/>
-  66     <origin rpy="0 0 0" xyz="0 0 0"/>
+      <child link="right_wheel"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <limit effort="30" velocity="1.0" lower="-2.2" upper="0.7" />
+      
    </joint>
    
    <link name="right_wheel">
-   4     <visual>
-   	<origin rpy="-3.1415 0 0" xyz="0.09137 0.00495 0"/>
-   5       <geometry>
-   6         <cylinder length="0.1" radius="0.5"/>
-   7       </geometry>
-   8     </visual>
-   	<collision>
-   	<geometry>
-   6         <cylinder length="0.1" radius="0.5"/>
-   7       </geometry>
-   	</collision>
-   9   </link>
+       <visual>
+   	<origin rpy="1.5707 0 0" xyz="0 -0.4 -0.600"/>
+        <geometry>
+          <cylinder length="0.1" radius="0.1"/>
+        </geometry>
+        <material name="Light_grey">
+          <color rgba="0.8 0.8 0.8 1"/>
+        </material>
+      </visual>
+
+  </link>
    
-    <joint name="body_right_wheel" type="revolute">
+    <joint name="body_left_wheel" type="revolute">
     	<axis xyz="0 0 1"/>
      	<parent link="base"/>
-  65     <child link="left_wheel"/>
-  66     <origin rpy="0 0 0" xyz="0.133333333333 0 -0.085"/>
+      <child link="left_wheel"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <limit effort="30" velocity="1.0" lower="-2.2" upper="0.7" />
        </joint>
    
    <link name="left_wheel">
-   4     <visual>
-   	<origin rpy="-3.1415 0 0" xyz="0.09137 0.00495 0"/>
-   5       <geometry>
-   6         <cylinder length="0.1" radius="0.5"/>
-   7       </geometry>
-   8     </visual>
-   	<collision>
-   	<geometry>
-   6         <cylinder length="0.1" radius="0.5"/>
-   7       </geometry>
-   	</collision>
-   9   </link>
+       <visual>
+   	<origin rpy="-1.5707 0 0" xyz="0 0.40 -0.600"/>
+         <geometry>
+           <cylinder length="0.1" radius="0.1"/>
+        </geometry>
+        <material name="Light_grey">
+          <color rgba="0.8 0.8 0.8 1"/>
+        </material>
+      </visual>
+  
+    </link>
    
    
    
@@ -65,5 +65,5 @@
    
    
    
-  10 </robot>
+   </robot>
   
