@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+
+   2 <robot name="robt">
+   3   <link name="body">
+   4     <visual>
+   5       <geometry>
+   6         <box size="0.7 0.7 1.2"/>
+   7       </geometry>
+   8     </visual>
+   	<collision>
+   	<geometry>
+   6         <box size="0.7 0.7 1.2"/>
+   7       </geometry>
+   	</collision>
+   9   </link>
+   
+   <link name="right_wheel">
+   4     <visual>
+   5       <geometry>
+   6         <cylinder length="0.1" radius="0.5"/>
+   7       </geometry>
+   8     </visual>
+   	<collision>
+   	<geometry>
+   6         <cylinder length="0.1" radius="0.5"/>
+   7       </geometry>
+   	</collision>
+   9   </link>
+   
+   <link name="left_wheel">
+   4     <visual>
+   5       <geometry>
+   6         <cylinder length="0.1" radius="0.5"/>
+   7       </geometry>
+   8     </visual>
+   	<collision>
+   	<geometry>
+   6         <cylinder length="0.1" radius="0.5"/>
+   7       </geometry>
+   	</collision>
+   9   </link>
+   
+   
+   
+   
+   
+   
+   
+   
+  10 </robot>
+  
