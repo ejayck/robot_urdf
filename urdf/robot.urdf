@@ -6,7 +6,7 @@
    
    
       <!-- BODY DRIVE WHEEL URDF -->
-   <link name="base">
+   <link name="base_link">
 
        <visual>
    	        <origin rpy="0 0 0" xyz="0 0. 0"/>
@@ -38,7 +38,7 @@
     <!-- RIGHT DRIVE WHEEL URDF -->
    <joint name="body_right_wheel" type="continuous">
    	<axis xyz="0 0 1"/>
-    	<parent link="base"/>
+    	<parent link="base_link"/>
       <child link="right_wheel"/>
       <origin rpy="1.5707 0 0" xyz="0 -0.41 -0.600"/>
       <limit effort="30" velocity="1.0" lower="-2.2" upper="0.7" />
@@ -74,7 +74,7 @@
    <!-- LEFT DRIVE WHEEL URDF -->
     <joint name="body_left_wheel" type="continuous">
     	<axis xyz="0 0 1"/>
-     	<parent link="base"/>
+     	<parent link="base_link"/>
       <child link="left_wheel"/>
       <origin rpy="1.5707 0 0" xyz="0 0.41 -0.600"/>
       <limit effort="30" velocity="1.0" lower="-2.2" upper="0.7" />
@@ -109,7 +109,7 @@
     <!-- RIGHT PASSIVE WHEELS URDF -->
     <joint name="body_top_right_wheel" type="continuous">
    	<axis xyz="0 0 1"/>
-    	<parent link="base"/>
+    	<parent link="base_link"/>
       <child link="top_right_wheel_passive"/>
       <origin rpy="1.5707 0 0" xyz="0.35 -0.41 -0.600"/>
       <limit effort="30" velocity="1.0" lower="-2.2" upper="0.7" />
@@ -145,7 +145,7 @@
 
   <joint name="body_bottom_right_wheel" type="continuous">
     <axis xyz="0 0 1"/>
-     <parent link="base"/>
+     <parent link="base_link"/>
      <child link="bottom_right_wheel_passive"/>
      <origin rpy="1.5707 0 0" xyz="-0.35 -0.41 -0.600"/>
      <limit effort="30" velocity="1.0" lower="-2.2" upper="0.7" />
@@ -183,7 +183,7 @@
     <joint name="body_top_left_wheel" type="continuous">
 
       <axis xyz="0 0 1"/>
-       <parent link="base"/>
+       <parent link="base_link"/>
        <child link="top_left_wheel_passive"/>
        <origin rpy="1.5707 0 0" xyz="0.35 0.41 -0.600"/>
        <limit effort="30" velocity="1.0" />
@@ -220,7 +220,7 @@
    <joint name="body_bottom_left_wheel" type="continuous">
 
      <axis xyz="0 0 1"/>
-      <parent link="base"/>
+      <parent link="base_link"/>
       <child link="bottom_left_wheel_passive"/>
       <origin rpy="1.5707 0 0" xyz="-0.35 0.41 -0.600"/>
       <limit effort="30" velocity="1.0" />
@@ -297,7 +297,7 @@
       <odometryFrame>odom</odometryFrame>
   
       <!-- Robot frame to calculate odometry from, defaults to `base_footprint` -->
-      <robotBaseFrame>base</robotBaseFrame>
+      <robotBaseFrame>base_link</robotBaseFrame>
   
       <!-- Odometry source, 0 for ENCODER, 1 for WORLD, defaults to WORLD -->
       <odometrySource>1</odometrySource>
@@ -364,7 +364,7 @@
 
   <!-- LIDAR SETTINGS -->
 
-  <gazebo reference="base">
+  <gazebo reference="base_link">
     <sensor type="ray" name="head_hokuyo_sensor">
       <pose>0 0 0.7 0 0 0</pose>
       <visualize>true</visualize>
@@ -395,7 +395,7 @@
       </ray>
       <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
         <topicName>/rrbot/laser/scan</topicName>
-        <frameName>base</frameName>
+        <frameName>base_link</frameName>
       </plugin>
     </sensor>
   </gazebo>

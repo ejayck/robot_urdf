@@ -1,0 +1,3 @@
+<launch>
+    <node name="map_publisher" pkg="map_server" type="map_server" args="$(find robot_urdf)/maps/first_floor.yaml"/> 
+</launch>
