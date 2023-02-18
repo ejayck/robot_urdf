@@ -37,7 +37,7 @@
     </link>
     <!-- RIGHT DRIVE WHEEL URDF -->
    <joint name="body_right_wheel" type="continuous">
-   	<axis xyz="0 0 1"/>
+   	<axis xyz="0 0 -1"/>
     	<parent link="base_link"/>
       <child link="right_wheel"/>
       <origin rpy="1.5707 0 0" xyz="0 -0.41 -0.600"/>
@@ -73,7 +73,7 @@
 
    <!-- LEFT DRIVE WHEEL URDF -->
     <joint name="body_left_wheel" type="continuous">
-    	<axis xyz="0 0 1"/>
+    	<axis xyz="0 0 -1"/>
      	<parent link="base_link"/>
       <child link="left_wheel"/>
       <origin rpy="1.5707 0 0" xyz="0 0.41 -0.600"/>
@@ -312,7 +312,7 @@
       <publishWheelJointState>true</publishWheelJointState>
   
       <!-- Set to true to swap right and left wheels, defaults to true -->
-      <legacyMode>false</legacyMode>
+      <legacyMode>true</legacyMode>
     </plugin>
 
 
@@ -366,7 +366,7 @@
 
   <gazebo reference="base_link">
     <sensor type="ray" name="head_hokuyo_sensor">
-      <pose>0 0 0.7 0 0 0</pose>
+      <pose>0 0 0.7 0 0 3.14159</pose>
       <visualize>true</visualize>
       <update_rate>40</update_rate>
       <ray>
