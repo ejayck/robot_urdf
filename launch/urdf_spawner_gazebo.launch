@@ -3,7 +3,7 @@
 <!-- creating a parameter with the robot urft file-->
 <param name="robot_description" command="$(find xacro)/xacro '$(find robot_urdf)/urdf/robot.urdf'"/>
 <!--Spawn robot in Gazebo-->
-<node name="spawn_robot" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param robot_description -model my_robot -x 0 -y 0 -z 0.05"/> 
+<node name="spawn_robot" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param robot_description -model my_robot -x 0 -y 10 -z 0.7"/> 
 
 <!-- to get rid off the joint link errors but letting this package interface them (not needed if no joints)-->
 <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node>
