@@ -2,16 +2,25 @@
 
   <robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
    
+    <!-- URDF parameters -->
+    <xacro:property name="body_width" value="0.5" />
+    <xacro:property name="body_length" value="0.7" />
+    <xacro:property name="wheel_diameter" value="0.1" />
+    <xacro:property name="wheel_thickness" value="0.1" />
+    <xacro:property name="body_height" value="1" />
+    <xacro:property name="gap" value="0.01" />
    
-   
-   
+
+
+
       <!-- BODY DRIVE WHEEL URDF -->
    <link name="base_link">
 
        <visual>
-   	        <origin rpy="0 0 0" xyz="0 0. 0"/>
+   	        <origin rpy="0 0 0" xyz="0 0 0"/>
           <geometry>
-              <box size="0.7 0.7 1.2"/>
+              <!--box size="0.7 0.7 1.2"/ -->
+              <box size="${body_length} ${body_width} ${body_height}"/>
          </geometry>
          <material name="grey">
           <color rgba="0.6 0.6 0.6 1"/>
@@ -19,9 +28,9 @@
        </visual>
 
        <collision>
-        <origin rpy="0 0 0" xyz="0 0. 0"/>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-            <box size="0.7 0.7 1.2"/>
+            <box size="${body_length} ${body_width} ${body_height}"/>
        </geometry>
        </collision>
 
@@ -40,7 +49,7 @@
    	<axis xyz="0 0 -1"/>
     	<parent link="base_link"/>
       <child link="right_wheel"/>
-      <origin rpy="1.5707 0 0" xyz="0 -0.41 -0.600"/>
+      <origin rpy="1.5707 0 0" xyz="0 -${body_width/2+gap+wheel_thickness/2} -${body_height/2}"/>
       <limit effort="30" velocity="1.0" lower="-2.2" upper="0.7" />
       
    </joint>
@@ -50,7 +59,7 @@
        <visual>
    	<origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <cylinder length="0.1" radius="0.1"/>
+          <cylinder length="${wheel_thickness}" radius="${wheel_diameter}"/>
         </geometry>
         <material name="Light_grey">
           <color rgba="0.8 0.8 0.8 1"/>
@@ -60,7 +69,7 @@
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <cylinder length="0.1" radius="0.1"/>
+          <cylinder length="${wheel_thickness}" radius="${wheel_diameter}"/>
         </geometry>
       </collision>
 
@@ -76,7 +85,7 @@
     	<axis xyz="0 0 -1"/>
      	<parent link="base_link"/>
       <child link="left_wheel"/>
-      <origin rpy="1.5707 0 0" xyz="0 0.41 -0.600"/>
+      <origin rpy="1.5707 0 0" xyz="0 ${body_width/2+gap+wheel_thickness/2} -${body_height/2}"/>
       <limit effort="30" velocity="1.0" lower="-2.2" upper="0.7" />
        </joint>
    
@@ -85,7 +94,7 @@
        <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
          <geometry>
-           <cylinder length="0.1" radius="0.1"/>
+           <cylinder length="${wheel_thickness}" radius="${wheel_diameter}"/>
         </geometry>
         <material name="Light_grey">
           <color rgba="0.8 0.8 0.8 1"/>
@@ -95,7 +104,7 @@
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
          <geometry>
-           <cylinder length="0.1" radius="0.1"/>
+           <cylinder length="${wheel_thickness}" radius="${wheel_diameter}"/>
         </geometry>
       </collision>
 
@@ -111,7 +120,7 @@
    	<axis xyz="0 0 1"/>
     	<parent link="base_link"/>
       <child link="top_right_wheel_passive"/>
-      <origin rpy="1.5707 0 0" xyz="0.35 -0.41 -0.600"/>
+      <origin rpy="1.5707 0 0" xyz="${body_length/2} -${body_width/2+gap+wheel_thickness/2} -${body_height/2}"/>
       <limit effort="30" velocity="1.0" lower="-2.2" upper="0.7" />
       
    </joint>
@@ -121,7 +130,7 @@
        <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <cylinder length="0.1" radius="0.1"/>
+          <cylinder length="${wheel_thickness}" radius="${wheel_diameter}"/>
         </geometry>
         <material name="Light_grey">
           <color rgba="0.8 0.8 0.8 1"/>
@@ -131,7 +140,7 @@
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <cylinder length="0.1" radius="0.1"/>
+          <cylinder length="${wheel_thickness}" radius="${wheel_diameter}"/>
         </geometry>
       </collision>
 
@@ -147,7 +156,7 @@
     <axis xyz="0 0 1"/>
      <parent link="base_link"/>
      <child link="bottom_right_wheel_passive"/>
-     <origin rpy="1.5707 0 0" xyz="-0.35 -0.41 -0.600"/>
+     <origin rpy="1.5707 0 0" xyz="-${body_length/2} -${body_width/2+gap+wheel_thickness/2} -${body_height/2}"/>
      <limit effort="30" velocity="1.0" lower="-2.2" upper="0.7" />
      
   </joint>
@@ -157,7 +166,7 @@
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
        <geometry>
-         <cylinder length="0.1" radius="0.1"/>
+         <cylinder length="${wheel_thickness}" radius="${wheel_diameter}"/>
        </geometry>
        <material name="Light_grey">
          <color rgba="0.8 0.8 0.8 1"/>
@@ -167,7 +176,7 @@
      <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
        <geometry>
-         <cylinder length="0.1" radius="0.1"/>
+         <cylinder length="${wheel_thickness}" radius="${wheel_diameter}"/>
        </geometry>
      </collision>
 
@@ -185,7 +194,7 @@
       <axis xyz="0 0 1"/>
        <parent link="base_link"/>
        <child link="top_left_wheel_passive"/>
-       <origin rpy="1.5707 0 0" xyz="0.35 0.41 -0.600"/>
+       <origin rpy="1.5707 0 0" xyz="${body_length/2} ${body_width/2+gap+wheel_thickness/2} -${body_height/2}"/>
        <limit effort="30" velocity="1.0" />
        
     </joint>
@@ -195,7 +204,7 @@
         <visual>
           <origin rpy="0 0 0" xyz="0 0 0"/>
          <geometry>
-           <cylinder length="0.1" radius="0.1"/>
+           <cylinder length="${wheel_thickness}" radius="${wheel_diameter}"/>
          </geometry>
          <material name="Light_grey">
            <color rgba="0.8 0.8 0.8 1"/>
@@ -205,7 +214,7 @@
        <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
          <geometry>
-           <cylinder length="0.1" radius="0.1"/>
+           <cylinder length="${wheel_thickness}" radius="${wheel_diameter}"/>
          </geometry>
        </collision>
 
@@ -222,7 +231,7 @@
      <axis xyz="0 0 1"/>
       <parent link="base_link"/>
       <child link="bottom_left_wheel_passive"/>
-      <origin rpy="1.5707 0 0" xyz="-0.35 0.41 -0.600"/>
+      <origin rpy="1.5707 0 0" xyz="-${body_length/2} ${body_width/2+gap+wheel_thickness/2} -${body_height/2}"/>
       <limit effort="30" velocity="1.0" />
       
    </joint>
@@ -232,7 +241,7 @@
        <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <cylinder length="0.1" radius="0.1"/>
+          <cylinder length="${wheel_thickness}" radius="${wheel_diameter}"/>
         </geometry>
         <material name="Light_grey">
           <color rgba="0.8 0.8 0.8 1"/>
@@ -242,7 +251,7 @@
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <cylinder length="0.1" radius="0.1"/>
+          <cylinder length="${wheel_thickness}" radius="${wheel_diameter}"/>
         </geometry> 
       </collision>
 
