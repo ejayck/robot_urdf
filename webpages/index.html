@@ -3,6 +3,7 @@
   <head>
     <title>2D Nav Goal Publisher</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/roslibjs/0.20.0/roslib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
       // Connect to the rosbridge server
       var ros = new ROSLIB.Ros({
@@ -16,6 +17,26 @@
         messageType : 'geometry_msgs/PoseStamped'
       });
       
+      var amclListener = new ROSLIB.Topic({
+        ros: ros,
+        name: '/amcl_pose',
+        messageType: 'geometry_msgs/PoseWithCovarianceStamped'
+      });
+
+      amclListener.subscribe(function(msg) {
+        var currentPose = msg.pose.pose;
+        var x = currentPose.position.x;
+        var y = currentPose.position.y;
+        var quaternion = currentPose.orientation;
+        var angle = Math.atan2(2 * quaternion.z * quaternion.w, 1 - 2 * quaternion.z * quaternion.z);
+        angle = angle * 180 / Math.PI;
+        angle = Math.round(angle * 100) / 100;
+        $('#currentPose').html("Current Pose: X=" + x + ", Y=" + y + ", Angle=" + angle);
+      });
+
+
+
+
       // Function to publish a 2D Nav Goal message
       function publishGoal() {
         // Get the X, Y, and angle values from the user input fields
@@ -59,5 +80,6 @@
     <label for="angle">Angle:</label>
     <input type="number" id="angle" name="angle" step="0.1" value="0.0"><br>
     <button onclick="publishGoal()">Publish Goal</button>
+    <div id="currentPose"></div>
   </body>
 </html>

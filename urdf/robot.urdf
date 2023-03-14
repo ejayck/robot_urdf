@@ -7,7 +7,7 @@
     <xacro:property name="body_length" value="0.7" />
     <xacro:property name="wheel_diameter" value="0.1" />
     <xacro:property name="wheel_thickness" value="0.1" />
-    <xacro:property name="body_height" value="1" />
+    <xacro:property name="body_height" value="0.5" />
     <xacro:property name="gap" value="0.01" />
    
 
