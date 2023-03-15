@@ -2,32 +2,14 @@
 <launch>
 
 <include file="$(find aws_robomaker_hospital_world)/launch/view_hospital.launch" />
-<!-- creating a parameter with the robot urft file-->
-<param name="robot_description" command="$(find xacro)/xacro '$(find robot_urdf)/urdf/robot.urdf'"/>
-<!--Spawn robot in Gazebo-->
-<node name="spawn_robot" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param robot_description -model my_robot -x 0 -y 10 -z 0.7"/> 
+<include file="$(find robot_urdf)/launch/urdf_spawner_gazebo.launch" />
+<include file="$(find robot_urdf)/launch/move_base(to_move_when_working).launch" />
 
-<!-- to get rid off the joint link errors but letting this package interface them (not needed if no joints)-->
-<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node>
-   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+
 <!-- Find the map and load it into rviz-->
    <node name="map_publisher" pkg="map_server" type="map_server" args="$(find robot_urdf)/maps/first_floor.yaml"/> 
    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot_urdf)/rvis_config/basic_robot.rviz"/>
-
-<!-- run the localization algorthm based on the map and the laser scan data-->
-   <node name="localiser" pkg="amcl" type="amcl" args="scan:=rrbot/laser/scan"/>
-
-   <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
-
-   <include file="$(find amcl)/examples/amcl_diff.launch" />
-
-   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-    <rosparam file="$(find robot_urdf)/costmaps/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
-    <rosparam file="$(find robot_urdf)/costmaps/costmap_common_params.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find robot_urdf)/costmaps/local_costmap_params.yaml" command="load" />
-    <rosparam file="$(find robot_urdf)/costmaps/global_costmap_params.yaml" command="load" /> 
-    <rosparam file="$(find robot_urdf)/costmaps/base_local_planner_params.yaml" command="load" />
- </node>
 
 
 </launch>
