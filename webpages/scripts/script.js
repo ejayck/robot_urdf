@@ -25,6 +25,16 @@
     angle = angle * 180 / Math.PI;
     angle = Math.round(angle * 100) / 100;
     $('#currentPose').html("Current Pose: X=" + x + ", Y=" + y + ", Angle=" + angle);
+    const imageContainer = document.getElementById("container");
+    const myImage = document.getElementById("bot");
+
+
+    myImage.style.position = "absolute"; // Make the image position absolute
+    myImage.style.left = ((21.4*y) + 680) + "px"; // Set the left position of the image
+    myImage.style.bottom = ((-20.8333*x) + 225) + "px"; // Set the top position of the image minus the wdith of the robot image
+
+  
+
   });
 
 
@@ -63,11 +73,3 @@
     publisher.publish(goal);
   };
 
-const imageContainer = document.getElementById("container");
-const myImage = document.getElementById("bot");
-const xPos = x; // The desired x-position of the image in pixels
-const yPos = y; // The desired y-position of the image in pixels
-
-myImage.style.position = "absolute"; // Make the image position absolute
-myImage.style.left = xPos + "px"; // Set the left position of the image
-myImage.style.top = yPos + "px"; // Set the top position of the image
