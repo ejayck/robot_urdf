@@ -41,7 +41,7 @@
 
 
   // Function to publish a 2D Nav Goal message
-  function publishGoal() {
+  function publishGoal(xv,yv) {
     // Get the X, Y, and angle values from the user input fields
     var x = parseFloat(document.getElementById('x').value);
     var y = parseFloat(document.getElementById('y').value);
@@ -56,8 +56,8 @@
       },
       pose : {
         position : {
-          x : x,
-          y : y,
+          x : xv,
+          y : yv,
           z : 0.0
         },
         orientation : {
@@ -72,4 +72,34 @@
     // Publish the goal message
     publisher.publish(goal);
   };
+
+  function go_to_room(xv,yv) { 
+    // Create a new 2D Nav Goal message
+    var angle = 60
+    var goal = new ROSLIB.Message({
+      header : {
+        seq : 0,
+        stamp : { sec : 0, nsec : 0 },
+        frame_id : 'map'
+      },
+      pose : {
+        position : {
+          x : xv,
+          y : yv,
+          z : 0.0
+        },
+        orientation : {
+          x : 0.0,
+          y : 0.0,
+          z : Math.sin(angle / 2.0),
+          w : Math.cos(angle / 2.0)
+        }
+      }
+    });
+    
+    // Publish the goal message
+    publisher.publish(goal);
+  };
+
+   
 
