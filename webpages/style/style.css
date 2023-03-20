@@ -16,7 +16,7 @@
     
 }
 body{
-    background-color: #ebeae8;
+    background-color: #f0f4f5;
 }
 
 h1 { 
@@ -29,12 +29,23 @@ h1 {
     
 }
 
+h2 { 
+    color: #73868c; 
+    font-family: 'Helvetica Neue', sans-serif; 
+    font-size: 20x; font-weight: bold; 
+    letter-spacing: -1px; 
+    line-height: 1; 
+    padding-left: 10px;
+    padding-top: 30px;
+    
+}
+
 
 /* CSS */
 .button-5 {
   align-items: center;
   background-clip: padding-box;
-  background-color: #fa6400;
+  background-color: #76d5db;
   border: 1px solid transparent;
   border-radius: .25rem;
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
@@ -62,7 +73,7 @@ h1 {
 
 .button-5:hover,
 .button-5:focus {
-  background-color: #fb8332;
+  background-color:  #fa6400;  
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
 
@@ -71,12 +82,12 @@ h1 {
 }
 
 .button-5:active {
-  background-color: #c85000;
+  background-color: #fa6400;
   box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
   transform: translateY(0);
 }
 
 .button_container{
-    padding-top: 20px;
+   
     width: 1150px;
 }
